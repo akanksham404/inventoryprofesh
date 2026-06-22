@@ -1,0 +1,76 @@
+server:
+  port: 8089
+
+spring:
+  application:
+    name: api-gateway
+  cloud:
+    gateway:
+      # --- 🟢 MINIMAL, STREAMLINED CENTRAL HOPS INTERCEPTOR ---
+      globalcors:
+        cors-configurations:
+          '[/**]':
+            allowedOrigins: "http://localhost:3000"
+            allowedMethods:
+              - GET
+              - POST
+              - PUT
+              - DELETE
+              - OPTIONS
+            allowedHeaders: "*"
+            allowCredentials: true
+
+      routes:
+        # 1. Auth Service (Cleaned up: No more messy header stripping!)
+        - id: auth-service
+          uri: http://127.0.0.1:8081
+          predicates:
+            - Path=/auth/**
+
+        # 2. Inventory Service
+        - id: inventory-service
+          uri: http://127.0.0.1:8083
+          predicates:
+            - Path=/api/products/**, /api/dashboard/**, /inventory/**
+
+        # 3. Order Service
+        - id: order-service
+          uri: http://127.0.0.1:8084
+          predicates:
+            - Path=/order/**
+          filters:
+            - AuthenticationFilter
+
+        # 4. Payment Service
+        - id: payment-service
+          uri: http://127.0.0.1:8085
+          predicates:
+            - Path=/payment/**
+          filters:
+            - AuthenticationFilter
+
+        # 5. Notification Service
+        - id: notification-service
+          uri: http://127.0.0.1:8086
+          predicates:
+            - Path=/notification/**
+          filters:
+            - AuthenticationFilter
+
+eureka:
+  instance:
+    prefer-ip-address: true
+  client:
+    fetch-registry: true
+    register-with-eureka: true
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "health,info"
+  info:
+    env:
+      enabled: true

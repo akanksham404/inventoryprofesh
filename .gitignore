@@ -1,0 +1,53 @@
+# Project exclude paths
+/api-gateway/target/
+/auth-service/target/
+/discovery-server/target/
+/inventory-service/target/
+/notification-service/target/
+/order-service/target/
+/payment-service/target/
+
+# IntelliJ
+.idea/
+*.iml
+
+# Maven / Java
+target/
+*.class
+*.jar
+*.war
+
+# Gradle
+.gradle/
+build/
+
+# Node / React
+node_modules/
+dist/
+
+# Logs
+logs/
+*.log
+
+# Environment variables
+.env
+.env.*
+
+# VS Code
+.vscode/
+
+# Eclipse
+.project
+.classpath
+.settings/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Coverage
+coverage/
+
+# Temporary files
+tmp/
+temp/
