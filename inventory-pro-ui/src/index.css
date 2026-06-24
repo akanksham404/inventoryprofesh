@@ -1,0 +1,53 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+:root {
+  --bg-main: #F8FAFC;
+  --bg-sidebar: #0F172A;
+  --bg-card: #FFFFFF;
+  --text-main: #1E293B;
+  --text-muted: #64748B;
+  --primary: #2563EB;
+  --primary-hover: #1D4ED8;
+  --border: #E2E8F0;
+  --success: #22C55E;
+  --warning: #F59E0B;
+  --danger: #EF4444;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Inter', sans-serif;
+}
+
+body {
+  background-color: var(--bg-main);
+  color: var(--text-main);
+  overflow-x: hidden;
+}
+
+/* Custom UI Layout Utilities */
+.btn-primary {
+  background-color: var(--primary);
+  color: white;
+  padding: 10px 16px;
+  border: none;
+  border-radius: 6px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.btn-primary:hover { background-color: var(--primary-hover); }
+
+.card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 24px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+}
+
+.badge-admin { background: #F3E8FF; color: #7E22CE; padding: 4px 8px; border-radius: 4px; font-size: 12px; font-weight: 600; }
+.badge-user { background: #FEF3C7; color: #B45309; padding: 4px 8px; border-radius: 4px; font-size: 12px; font-weight: 600; }
+.badge-active { background: #DCFCE7; color: #15803D; padding: 4px 8px; border-radius: 4px; font-size: 12px; font-weight: 600; }
